@@ -2,38 +2,53 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h2><i class="fa fa-files-o"></i><span class="break"></span>Create a new gem</h2>
+        <ul class="nav nav-tabs" id="index-tab">
+          <li id="info-user-tab" class="active"><a href="#you" data-toggle="tab" >Your Info</a></li>
+          <li id="info-gem-tab" class=""><a href="#gem" data-toggle="tab" >New Gem</a></li>
+        </ul>
     </div>
     <div class="panel-body">
 
       <%= form_for @jem do |f| %>
-        <small>These fields are required for processing and generating gems automatically :)</small><br><br>
-        <%= render 'shared/error_messages' %>
+        <div class="tab-content">
+          <div class="tab-pane active" id="you">
+            <div class="panel-body">
+              <h3 class="form-explanation">Tell us about yourself!</h3>
+              <%= f.label :author, 'Your Name' %></br>
+              <%= f.text_field :author, class: "form-control", value: "#{current_user.name}"  %></br>
 
-        <%= f.label :author, 'Your Name' %></br>
-        <%= f.text_field :author, class: "form-control"  %></br>
+              <%= f.label :email, 'Your Email Address' %></br>
+              <%= f.text_field :email, class: "form-control", value: "#{current_user.email}"  %></br>
 
-        <%= f.label :email, 'Your Email Address' %></br>
-        <%= f.text_field :email, class: "form-control", placeholder: "ex: example-email@gmail.com"  %></br>
+              <a href="#gem" data-toggle="tab" class="btn btn-primary full-width-button" id="new-form-next" >Next >></a>
+            </div>
+          </div>
+          <div class="tab-pane" id="gem">
+            <div class="panel-body">
+              <h3 class="form-explanation">Tell us about your new gem</h3>
+              <%= f.label :name, 'Name of Your New Gem' %></br>
+              <%= f.text_field :name, class: "form-control", placeholder: "ex: example-gem-js-rails" %></br>
 
-        <%= f.label :name, 'Name of Your New Gem' %></br>
-        <%= f.text_field :name, class: "form-control", placeholder: "ex: example-gem-js-rails" %></br>
+              <%= f.label :description, 'Subtitle of Your Gem' %></br>
+              <%= f.text_field :description, class: "form-control", placeholder: "one line description of gem"  %></br>
+            
+              <%= f.label :summary, 'Short Summary of Your Gem' %></br>
+              <%= f.text_field :summary, class: "form-control", placeholder: "short summary of what it does"  %></br>
+            
+              <%= f.label :github, 'Source Website of Your Assets' %></br>
+              <%= f.text_field :github, class: "form-control", value: "http://"  %></br>
 
-        <%= f.label :description, 'Subtitle of Your Gem' %></br>
-        <%= f.text_field :description, class: "form-control", placeholder: "one line description of gem"  %></br>
-      
-        <%= f.label :summary, 'Short Summary of Your Gem' %></br>
-        <%= f.text_field :summary, class: "form-control", placeholder: "short summary of what it does"  %></br>
-      
-        <%= f.label :github, 'Source Website of Your Assets' %></br>
-        <%= f.text_field :github,:placeholder => 'http://', class: "form-control", value: "http://"  %></br>
-
-        <%= f.label :version_number, 'Initial Version Number of Your Gem' %></br>
-        <%= f.text_field :version_number, value: '0.0.1', class: "form-control"  %></br>
-      
-        
-      
-        <%= f.submit 'Create Gem', :class => 'btn btn-primary full-width-button' %>
+              <%= f.label :version_number, 'Initial Version Number of Your Gem' %></br>
+              <%= f.text_field :version_number, value: '0.0.1', class: "form-control"  %></br>
+            
+              <%= f.submit 'Create Gem', :class => 'btn btn-primary full-width-button' %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
 </div>
+
+
+
