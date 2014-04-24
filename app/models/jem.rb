@@ -145,32 +145,32 @@ class Jem < ActiveRecord::Base
     client.delete_repository("gemify-js/#{self.name}")
   end
 
+
+  def get_jem_versions
+    versions = JSON.parse(Typhoeus.get("http://rubygems.org/api/v1/versions/#{self.name}.json").response_body)
+    version_numbers = versions.map{|version| version["number"]}
+    return version_numbers
+  end
+
   def delete_jem_rubygem
-    `bundle exec rake yank_all_versions["#{self.name}"]`
-    # versions = Gems.versions "#{self.name}"
-    # version_numbers = versions.map{|version| version["number"]}
-    # version_numbers.each do |version|
-    #   `gem yank #{self.name} -v #{version}`
-    #   puts "yanked #{self.name}, #{version}"
-    # end
-    # puts "inside delete jem rubygem"
-    # name = self.name
-    # versions = Gems.versions "#{name}"
-    # version_numbers = versions.map{|version| version["number"]}
-    # version_numbers.each do |version|
-    #   puts version
-    #   request = Typhoeus::Request.new(
-    #     "https://rubygems.org/api/v1/gems/yank",
-    #     method: :delete,
-    #     body: "this is a request body",
-    #     params: { gem_name: "#{name}",
-    #               version: "#{version}"},
-    #     headers: { Authorization: "07608ba71bc8526a4e424fba01bd04ba" }
-    #   )
-    #   puts name
-    #   puts version
-    #   request.run
-    # end
+    # `bundle exec rake yank_all_versions["#{self.name}"]`
+    name = self.name
+    versions = get_jem_versions
+    version_numbers = versions.map{|version| version["number"]}
+    version_numbers.each do |version|
+      puts version
+      request = Typhoeus::Request.new(
+        "https://rubygems.org/api/v1/gems/yank",
+        method: :delete,
+        body: "this is a request body",
+        params: { gem_name: "#{name}",
+                  version: "#{version}"},
+        headers: { Authorization: "07608ba71bc8526a4e424fba01bd04ba" }
+      )
+      puts name
+      puts version
+      request.run
+    end
   end
 
   def has_files?
@@ -189,9 +189,12 @@ class Jem < ActiveRecord::Base
   end
 
   def has_rubygems?
-    if (Gems.info self.name).class == String
+    gem_unavailable_message = "This rubygem could not be found."
+    response = Typhoeus.get("http://rubygems.org/api/v1/gems/#{self.name}.json").response_body
+
+    if response == gem_unavailable_message
       return false
-    elsif (Gems.info self.name).class == Hash
+    else
       errors.add(:name, "already exists on Rubygems")
       return true
     end

@@ -10,7 +10,7 @@ set(:sidekiq_pid) { "#{current_path}/tmp/pids/sidekiq.pid" }
 set(:sidekiq_processes) { 1 }
 
 set :application, "gemify-js"
-set :repository,  "git@github.com:wontaeyang/ilovejs.git"
+set :repository,  "git@github.com:wontaeyang/gemify-js.git"
 
 set :user, 'gemify'
 set :deploy_to, "/home/#{ user }/#{ application }"
