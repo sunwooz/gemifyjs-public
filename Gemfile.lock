@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/sunwooz/gems.git
-  revision: b40c5cef3411e872a960755383ad2fb56e3b2bd1
-  specs:
-    gems (0.8.3)
-      json (~> 1.8)
-
-GIT
   remote: https://github.com/wontaeyang/bootstrap-sass.git
   revision: 9b83c693be61aee2283faaa2ff2a7b7a4cbd5ee2
   specs:
@@ -328,7 +321,6 @@ DEPENDENCIES
   factory_girl_rails
   fog
   font-awesome-rails
-  gems!
   google-analytics-rails
   jbuilder (~> 2.0)
   jquery-datatables-rails!
