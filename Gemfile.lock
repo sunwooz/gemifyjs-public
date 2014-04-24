@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/rubygems/gems.git
-  revision: 7b303521ac9cdaad2cac54be2a3546c738b186e6
+  remote: https://github.com/sunwooz/gems.git
+  revision: b40c5cef3411e872a960755383ad2fb56e3b2bd1
   specs:
     gems (0.8.3)
       json (~> 1.8)
