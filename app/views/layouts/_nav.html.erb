@@ -1,0 +1,35 @@
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= image_tag 'gem.png', size: "60x60", class: "logo pull-left" %>
+      <% if user_signed_in? %>
+        <%= link_to 'Gemify-JS', jems_path, class: 'navbar-brand' %>
+      <% else %>
+        <%= link_to 'Gemify-JS', root_path, class: 'navbar-brand' %>
+      <% end %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><a href="#">Hi, <%= current_user.name %>!</a></li>
+          <li><%= link_to 'Dashboard', jems_path %> </li>
+          <li><%= link_to 'Create Gem', new_jem_path %>
+          <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
+        <% else %>
+          <li><%= link_to 'Please sign in', user_omniauth_authorize_path(:github) %></li>
+        <% end %>
+      </ul>
+    
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

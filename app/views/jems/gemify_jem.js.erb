@@ -1,0 +1,6 @@
+$('#job-id-container #job_id').text("<%= @job_id %>")
+console.log('appendeds job_id');
+$('#progress-bar').show()
+$('html, body').animate({scrollTop:0}, 'slow')
+$('.alert.alert-notice').fadeOut()
+$("#activity-list").prepend("<%=j render :partial => 'scripts/activity' %>"); 

@@ -1,0 +1,17 @@
+<li>
+  <% if @activity.action == "create" %>
+    <i class="fa fa-plus" style="color: #36a9e1;"></i> <%= User.find(@activity.user_id).name.upcase %> added
+  <% elsif @activity.action == "destroy" %>
+    <i class="fa fa-minus" style="color: #ff5454;"></i> <%= User.find(@activity.user_id).name.upcase %> deleted
+  <% elsif @activity.action == "gemify_updated_jem" %>
+    <i class="fa fa-arrow-up" style="color: #bdea74;"></i> <%= User.find(@activity.user_id).name.upcase %> updated gem
+  <% elsif @activity.action == "gemify_jem" %>
+    <i class="fa fa-heart" style="color: #e84c8a;"></i> <%= User.find(@activity.user_id).name.upcase %> gemmed
+  <% end %>
+  <% if @activity.trackable_type == "Jem" %>
+    <%= @jem.name %>
+  <% else %>
+    <%= @activity.trackable_name %>
+  <% end %>
+  <%= time_ago_in_words(@activity.created_at) %> ago
+</li>

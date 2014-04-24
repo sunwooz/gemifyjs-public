@@ -1,0 +1,14 @@
+<tr data-id="<%= script.id %>">
+  <td><i class="fa fa-file-o"></i> <%= File.basename(script.file.url) %></td>
+  <td class="text-center"><%= script.file.file.extension.upcase %></td>
+  <td>
+    <%=
+    link_to 'Remove',
+    delete_script_path(script),
+    remote: :true,
+    method: :delete,
+    :data => { confirm: "Are you sure? "},
+    :class => "btn btn-danger btn-xs center-block"
+    %>
+  </td>
+</tr>

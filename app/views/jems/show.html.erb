@@ -1,0 +1,269 @@
+
+<div class="row">
+  <div style="display:none" id="progress-bar" class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading" id="job_messages">
+        <h2><i class="fa fa-align-justify"></i><span class="break"></span>Message</h2>
+      </div>
+      <div class="panel-body">
+        <div class="progress">
+          <div id="job-progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            0%
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-3" id="info-panel">
+
+      <div class="smallstat no-padding">
+
+        <div class="info-graphic files">
+          <div class="boxchart"><%= image_tag 'ruby.png', size: "40x40" %></div>
+        </div>
+
+        <span id="jem_name" class="value"><%= @jem.name %></span>
+        <span class="title">Gem</span>
+
+      </div>
+
+
+
+    <div class="panel panel-default">
+      <div class="panel-body no-padding">
+        <div class="panel-padding">
+
+          <div class="info-item">
+            <span class="info-title"><i class="fa fa-user"></i> Author:</span>
+            <span><%= @jem.author %></span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-title"><i class="fa fa-inbox"></i> Email:</span>
+            <span><%= @jem.email %></span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-title"><i class="fa fa-home"></i> Homepage:</span>
+            <span><%= @jem.homepage %></span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-title"><i class="fa fa-align-left"></i> Name:</span>
+            <span><%= @jem.name %></span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-title"><i class="fa fa-github"></i> Original JS Github:</span>
+            <span><%= link_to 'github/' + @jem.github.split('/').last, @jem.github.to_s %></span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-title"><i class="fa fa-arrow-circle-up"></i> Version:</span>
+            <span><%= @jem.version_number %></span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-title"><i class="fa fa-align-justify"></i> Description:</span>
+            <span><%= @jem.description %></span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-title"><i class="fa fa-clock-o"></i> Created:</span>
+            <span><%= @jem.created_at.strftime('%F') %></span>
+
+          </div>
+
+          <div class="info-item">
+            <span class="info-title"><i class="fa fa-arrow-up"></i> Updated:</span>
+            <span><%= @jem.updated_at.strftime('%F') %></span>
+          </div>         
+
+          </br>
+          <div class="info-item">
+            <% if @jem.user_id == current_user.id %>
+              <%= link_to "Edit", edit_jem_path(@jem), class: "btn btn-success" %>
+              <%= link_to 'Remove', delete_jem_path(@jem), data: {:confirm => 'Are you sure?'}, :method => :delete, class: "btn btn-danger" %>
+            <% end %>
+          </div>
+
+          <div class="hidden info-item" id="jem_id"><%= @jem.id %></div>
+
+        </div>
+      </div>
+    </div> <!-- end of panel -->
+
+
+  </div>
+
+
+  <div class="col-md-9">
+
+    <div class="row">
+      <div class="col-lg-6 col-sm-6 col-xs-6 col-xxs-12">
+        <div class="smallstat">
+          <div class="info-graphic activity">
+            <div class="boxchart"><%= image_tag 'github.png', size: "40x40" %></div>
+          </div>
+           <% if @jem.gem_repo %>
+           <span class="value"><%= link_to "github/#{@jem.name}", @jem.gem_repo, target: "_blank" %></span> 
+          <% else %>
+            <span class="value" id="github-repo-value">Not Available</span> 
+          <% end %> 
+          <span class="title">Gem Repository</span>
+        </div>
+      </div>
+
+
+      <div class="col-lg-6 col-sm-6 col-xs-6 col-xxs-12">
+        <div class="smallstat">
+          <div class="info-graphic primary">
+            <div class="boxchart"><%= image_tag 'files.png', size: "40x40" %></div>
+          </div>
+          <% if @jem.rubygem_link %>            
+            <span class="value"><%= link_to "Rubygem Link", @jem.rubygem_link, target: '_blank' %></span>
+          <% else %>
+            <span class="value" id="rubygem-value">Not Available</span> 
+          <% end %>
+          <span class="title">Ruby Gems</span>
+        </div>
+      </div>
+    </div>
+
+
+      <% if @jem.scripts.count == 0 && @jem.user_id == current_user.id %>
+        <div class="panel panel-default no-gems-panel">
+          <div class="sub-title no-gems-padding">
+            <h2 class="text-center">Configure your gem</h2></br>
+            <p class="text-center">You can drag and drop files anywhere in the screen to upload.</p>
+            <p class="text-center">Click on 'Gemify' after adding some asset files to deploy your gem to Github and Rubygems.</p>
+          </div>
+        </div>
+      <% end %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2><i class="fa fa-files-o"></i><span class="break"></span>Dashboard</h2>
+      </div>
+      <div class="panel-body">
+        <table id="file-list" class="table table-bordered">
+          <thead>
+            <tr>
+              <th>FILE NAME</td>
+              <th class="text-center" width="150">FILE TYPE</td> 
+              <th class="text-center" width="80">ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @jem.scripts.each do |script| %>
+              <tr data-id="<%= script.id %>">
+                <td><i class="fa fa-file-o"></i> <%= File.basename(script.file.url) %></td>
+                <td class="text-center"><%= script.file.file.extension.upcase %></td>
+                <td>
+                <% if @jem.user_id == current_user.id %>
+                  <%=
+                    link_to 'Remove',
+                    delete_script_path(script),
+                    remote: :true,
+                    method: :delete,
+                    :data => { confirm: "Are you sure? "},
+                    :class => "btn btn-danger btn-xs center-block"
+                   %>
+                <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% if @jem.user_id == current_user.id %>
+        <div class="submit-container">
+          <% if @jem.rubygem_link && @jem.gem_repo %>
+
+              <input type="submit" class="update-modal-button btn btn-primary btn-sm pull-right make-gem-button" data-toggle="modal" data-target="#versionModal" value="Update Gem"/>
+
+            <% else %>
+
+            <%= form_tag '/create_gem', :method => :post, :remote => :true, :id => "generate-gem-form" do %>
+              <input type="hidden" name="id" value="<%= @jem.id %>"/>
+              <%= submit_tag 'Gemify!', class: "btn btn-primary btn-sm pull-right make-gem-button", id: "generate-gem-button" %>
+            <% end %>
+
+          <% end %>
+
+            <form action="/jems/<%= @jem.id %>/scripts" id="new-script" class="" enctype="multipart/form-data" method="post" >
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+              <input name="_method" type="hidden" value="POST" />
+              <span class="btn btn-success btn-sm pull-right fileinput-button">
+                <span>Add Files</span>
+                <input name="script[file]" type="file" multiple  />
+              </span>
+            </form>
+
+            <!-- Modal -->
+            <div class="modal fade" id="versionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Update Version Number</h4>
+                  </div>
+                  <div class="modal-body">
+                    <h3>Old Version: <span id="version_number"><%= @jem.version_number %></span></h3>
+                    <label>New Version Number: </label>
+                    <input id="new_version_number" name="new_jem_version", class="form-control" type="text" placeholder="<%= @jem.version_number %>"/><br>
+                    <label>New Commit Message</label>
+                    <input class="form-control" id="new_commit_message" name="new_commit_message" type="text" placeholder="Add new commit message"/>
+                    <br><br><br>
+                    <div class="modal-footer">
+
+                      <%= form_tag '/update_gem', :method => :post, :remote => true do %>
+                        <%= token_tag %>
+                        <input type="hidden" name="id" value="<%= @jem.id %>"/>
+                        <%= submit_tag 'Gemify', class: "btn btn-primary btn-sm pull-right make-gem-button", id: "update-gem-button" %>
+                      <% end %>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" >
+      <h2><i class="fa fa-check"></i><span class="break"></span>Recent Activity</h2>
+    </div>
+    <div class="panel-body">
+      <ul class="dashboard-list" id="activity-list">
+        <% @activities.each do |activity| %>
+        <li>
+          <% if activity.action == "create" %>
+            <i class="fa fa-plus" style="color: #36a9e1;"></i> <%= User.find(activity.user_id).name.upcase %> added
+          <% elsif activity.action == "destroy" %>
+            <i class="fa fa-minus" style="color: #ff5454;"></i> <%= User.find(activity.user_id).name.upcase %> deleted
+          <% elsif activity.action == "gemify_updated_jem" %>
+            <i class="fa fa-arrow-up" style="color: #bdea74;"></i> <%= User.find(activity.user_id).name.upcase %> updated gem
+          <% elsif activity.action == "gemify_jem" %>
+            <i class="fa fa-heart" style="color: #e84c8a;"></i> <%= User.find(activity.user_id).name.upcase %> gemmed
+          <% end %>
+          <%= activity.trackable_name %>
+          <%= time_ago_in_words(activity.created_at) %> ago
+        </li>
+        <% end %>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="job-id-container"><p class="hidden" id="job_id"></p></div>
+</div>
+
+

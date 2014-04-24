@@ -1,0 +1,6 @@
+<% if @script.new_record? %>
+  alert("Failed to upload script: <%= j @script.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+  $("#file-list tbody").append("<%=j render @script %>"); 
+  $("#activity-list").prepend("<%=j render :partial => 'activity' %>"); 
+<% end %>

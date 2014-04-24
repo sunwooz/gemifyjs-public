@@ -1,0 +1,24 @@
+# -*- encoding: utf-8 -*-
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require '<%= @jem.name %>/version'
+
+Gem::Specification.new do |gem|
+  gem.name          = "<%= @jem.name %>"
+  gem.version       = "<%= @jem.version_number %>"
+  gem.authors       = "<%= @jem.author %>"
+  gem.email         = "<%= @jem.email %>"
+  gem.description   = "<%= @jem.description %>"
+  gem.summary       = "<%= @jem.summary %>"
+  gem.homepage      = "<%= @jem.github %>"
+  gem.license       = "MIT"
+
+  gem.add_runtime_dependency 'railties', '>= 3.1'
+  gem.add_runtime_dependency 'thor', '>= 0'
+  gem.add_development_dependency 'rake', '>= 0'
+
+  gem.files         = `git ls-files`.split($/)
+  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.require_paths = ["lib"]
+end

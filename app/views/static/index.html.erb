@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            
+            <!-- Favicon -->
+            <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+                
+            <title>Gemify-JS</title>
+            <%= stylesheet_link_tag 'front/front' %>
+            <%= stylesheet_link_tag 'front/default' %>
+            <%= stylesheet_link_tag 'front/flexslider' %>
+            <%= stylesheet_link_tag 'front/owl-carousel/owl.carousel' %>
+            <%= stylesheet_link_tag 'front/owl-carousel/owl.theme' %>
+            <%= stylesheet_link_tag 'front/owl-carousel/owl.transitions' %>
+            <%= javascript_include_tag 'front/application' %>
+            <%= javascript_include_tag 'front/html5shiv' %>
+            <%= javascript_include_tag 'front/jquery.flexslider' %>
+            <%= javascript_include_tag 'front/jquery.magnific-popup.min' %>
+            <%= javascript_include_tag 'front/modernizr-2.6.2.min' %>
+            <%= javascript_include_tag 'front/owl-carousel/owl.carousel' %>
+            <%= javascript_include_tag 'front/respond.min' %>
+            <%= javascript_include_tag 'front/scripts' %>
+            <%= javascript_include_tag 'front/scroll' %>
+
+            <%= csrf_meta_tags %>
+            <%= analytics_init if Rails.env.production? %>
+ 
+        </head>
+        <body>            
+            <!-- Hero -->
+            <section id="hero">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="logo">
+                                <h1><%= image_tag 'gem.png', size: "100x100" %></i></h1>
+                            </div>
+                            <div class="intro">
+                                <h1>Gemify-JS simplifies adding JS / CSS libraries to your Rails application.</h1>
+                                <p class="lead">Forget about manually including libraries into your Rails aplication. Gemify it then install!</p>
+                                <div class="buttons">
+                                    <%= link_to user_omniauth_authorize_path(:github), class: "btn btn-1 btn-lg"  do %>
+                                        <i class="fa fa-sign-in"></i>
+                                        Sign in with Github
+                                    <% end %>
+                                    <%= link_to show_jem_path, class: "btn btn-link btn-lg", id: "learn-more" do %>
+                                        <i class="fa fa-arrow-circle-o-right"></i> See all our gems
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <div id="main-slider" class="flexslider">
+                                <ul class="slides">
+                                    <li><%= image_tag "slides/01.png" %></li>
+                                    <li><%= image_tag "slides/02.png" %></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End hero -->
+            
+            <!-- Features -->
+            <section id="features" name="features">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="overview">
+                                <h1>Dead Simple Gem Generation</h1>
+                                <p class="lead">We make it ridiculously easy to turn your JS, CSS and Image files into a Rails asset pipeline compatible gem.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-md-offset-1 col-sm-offset-1">
+                            <figure class="item">
+                                <div class="item-icon">
+                                    <i class="fa fa-rocket fa-lg"></i>
+                                </div>
+                                <div class="item-body">
+                                    <h2>Github Integration</h2>
+                                    <p>We create and manage the github repository so you don't have to!  Just remove the old files and upload new files then Gemify!</p>
+                                </div>
+                            </figure>
+                            <figure class="item">
+                                <div class="item-icon">
+                                    <i class="fa fa-files-o fa-lg"></i>
+                                </div>
+                                <div class="item-body">
+                                    <h2>We Push To Rubygems</h2>
+                                    <p>Don't worry about managing uploading and updating the gem, we handle it all for you!</p>
+                                </div>
+                            </figure>
+                            <figure class="item">
+                                <div class="item-icon">
+                                    <i class="fa fa-bar-chart-o fa-lg"></i>
+                                </div>
+                                <div class="item-body">
+                                    <h2>Less Steps For You</h2>
+                                    <p>Just upload and gemify! That's all you need to do to gemify your javascript libraries, your jquery plugins and your sick-lookin' themes</p>
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-md-offset-2 col-sm-offset-2">
+                            <figure class="item">
+                                <div class="item-icon">
+                                    <i class="fa fa-files-o fa-lg"></i>
+                                </div>
+                                <div class="item-body">
+                                    <h2>Drag N' Drop!</h2>
+                                    <p>Just drag and drop your Javascript, CSS and Image files and we'll organize it all for you.  Never worry about manually creating another front-end rails gem!</p>
+                                </div>
+                            </figure>
+                            <figure class="item">
+                                <div class="item-icon">
+                                    <i class="fa fa-star fa-lg"></i>
+                                </div>
+                                <div class="item-body">
+                                    <h2>Check The Gem's Progress</h2>
+                                    <p>We have a nifty progress bar that shows you the status of the gem generation.</p>
+                                </div>
+                            </figure>
+                            <figure class="item">
+                                <div class="item-icon">
+                                    <i class="fa fa-coffee fa-lg"></i>
+                                </div>
+                                <div class="item-body">
+                                    <h2>Developer Friendly</h2>
+                                    <p>Shoot us an email if you're having any trouble using our application. We're developers, too!</p>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End features -->
+            
+            <!-- Image -->
+            <section id="image">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="iphone-2">
+                                <%= image_tag "linktocat.png", class: "img-responsive linktocat" %>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="text center open-source">
+                                <h1>We're<br>Open Source</h1>
+                                <p class="lead">We love contributors. Join us on our adventure!</p>
+                                <a target="_blank" href="http://www.github.com/wontaeyang/ilovejs" class="center btn btn-4 btn-lg btn-wide"><i class="fa fa-github icon"></i>Fork Us!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End image -->
+            
+            <!-- About -->
+            <section id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="overview">
+                                <h1>Made by two Yangs</h1>
+                                <p class="lead">Built with love @ Flatiron School.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-md-offset-2 col-sm-offset-2 text-center">
+                            <figure class="user">
+                                <div class="user-avatar">
+                                    <%= image_tag "user-wontae.jpg", class: "img-responsive img-circle" %>
+                                </div>
+                                <h2>Wontae Yang</h2>
+                                <p style="margin-bottom: 10px" class="lead">Yang #1</p>
+                                <p class="lead">Wontaeyang@gmail.com</p>
+                                <a target="_blank" href="http://www.github.com/wontaeyang" class="btn btn-1 btn-lg"><i class="fa fa-github icon"></i>/Wontaeyang/</a>
+                            </figure>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-md-offset-2 col-sm-offset-2 text-center">
+                            <figure class="user">
+                                <div class="user-avatar">
+                                    <%= image_tag "user-sunwoo.jpg", class: "img-responsive img-circle" %>
+                                </div>
+                                <h2>Sunwoo Yang</h2>
+                                <p style="margin-bottom: 10px" class="lead">Yang #2</p>
+                                <p class="lead">yangsunwoo@gmail.com</p>
+                                <a target="_blank" href="http://www.github.com/sunwooz" class="btn btn-1 btn-lg"><i class="fa fa-github icon"></i>/Sunwooz/</a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End About -->
+        
+            <!-- Purchase -->
+            <section id="purchase">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Are you ready to Gemify?</h1>
+                            <a class="btn btn-1 btn-lg" href="/users/auth/github">
+                              <i class="fa fa-sign-in"></i> Create Your First Gem!
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End purchase -->
+            
+            <!-- Footer -->
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="overview">
+                                <h1>Contact Us!</h1>
+                                <p class="lead bg-primary"><span class="bg-primary">Wontae Yang:</span> <kbd>Wontaeyang@gmail.com</kbd></p>
+                                <p class="lead bg-primary"><span class="bg-primary">Sunwoo Yang:</span> <kbd>Yangsunwoo@gmail.com</kbd></p>
+                                </br>
+                                <p class="lead bg-primary">Flatiron School Project</p>
+                            </div>
+                            <div class="footer-note">
+                                <p>&copy; 2014 Gemify-Js</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- End footer -->
+            
+
+        </body>
+    </html>

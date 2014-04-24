@@ -1,0 +1,9 @@
+$('#job_id').text("<%= @job_id %>")
+console.log('Appending <%= @job_id %>');
+// $('#job-id-container').append('<div class="hidden">The append triggers the queryForPercentage function!')
+console.log('appended job_id');
+$('#progress-bar').show()
+$('html, body').animate({scrollTop:0}, 'slow')
+$('.alert.alert-notice').hide()
+
+$("#activity-list").prepend("<%=j render :partial => 'scripts/activity' %>"); 

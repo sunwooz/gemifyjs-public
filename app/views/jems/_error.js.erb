@@ -1,0 +1,7 @@
+<% if @jem.has_repo? == true %>
+alert('Repository already exsists on Github');
+<% end %>
+
+<% if @jem.has_rubygems? == true %>
+alert('Gem name already exsists on Rubygems');
+<% end %>

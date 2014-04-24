@@ -1,0 +1,9 @@
+$("tr[data-id=<%= @script.id %>]").fadeOut(function(){
+  $(this).remove();
+  $("#activity-list").prepend("<%=j render :partial => 'activity' %>");
+});
+
+if ( $('#file-list tbody tr').size() == 1 ) {
+	$('.make-gem-button').prop('disabled', true);
+}
+	

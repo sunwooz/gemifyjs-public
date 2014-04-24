@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2><i class="fa fa-files-o"></i><span class="break"></span>Gem list</h2>
+        <ul class="nav nav-tabs" id="index-tab">
+          <li class="active"><a href="#gems" data-toggle="tab" >Gems</a></li>
+          <li class=""><a href="#activities" data-toggle="tab" >Activity</a></li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane active" id="gems">
+          <div class="panel-body">
+            <table id="jems-table" class="table datatable table-striped table-bordered bootstrap-datatable" style="display: none;">
+              <thead>
+                <tr>
+                  <th>GEM NAME</th>
+                  <th class="text-center">AUTHOR</th> 
+                  <th class="text-center">RUBYGEM</th> 
+                  <th class="text-center">UPDATE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @jems.each do |jem| %>
+                  <tr>
+                    <td><i class="fa fa-file-o"></i> <%= link_to jem.name, jem_path(jem) %></td>
+                    <td class="text-center"><%= jem.author %></td>
+                    <% if jem.rubygem_link == nil %>
+                      <td class="text-center">NA</td>
+                    <% else %>
+                      <td class="text-center"><%= jem.rubygem_link %></td>
+                    <% end %>
+                    <td class="text-center"><%= jem.updated_at.strftime('%F') %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane" id="activities">
+          <ul class="dashboard-list" id="activity-list">
+            <% @activities.each do |activity| %>
+              <li>
+                <% if activity.action == "create" %>
+                  <i class="fa fa-plus" style="color: #36a9e1;"></i> <%= User.find(activity.user_id).name.upcase %> added
+                <% elsif activity.action == "destroy" %>
+                  <i class="fa fa-minus" style="color: #ff5454;"></i> <%= User.find(activity.user_id).name.upcase %> deleted
+                <% elsif activity.action == "update" %>
+                  <i class="fa fa-arrow-up" style="color: #bdea74;"></i> <%= User.find(activity.user_id).name.upcase %> <%= activity.action.sub(/e?$/, "ed") %>
+                <% elsif activity.action == "gemify_jem" %>
+                  <i class="fa fa-heart" style="color: #e84c8a;"></i> <%= User.find(activity.user_id).name.upcase %> gemmed
+                <% end %>
+                <%= activity.trackable_name %>
+                <%= time_ago_in_words(activity.created_at) %> ago
+              </li>
+            <% end %>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div><!--/col-->
+
+</div>
