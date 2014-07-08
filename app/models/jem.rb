@@ -27,6 +27,7 @@ class Jem < ActiveRecord::Base
       :homepage => self.homepage,
       :private => false,
       :has_issues => true,
+      :organization => 'gemify-js',
       :has_wiki => true,
       :has_downloads => true
     })
