@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140416230403) do
 
-  create_table "activities", force: true do |t|
+  create_table "activities", force: :cascade do |t|
     t.integer  "jem_id"
     t.string   "action"
     t.integer  "trackable_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140416230403) do
   add_index "activities", ["jem_id"], name: "index_activities_on_jem_id"
   add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id"
 
-  create_table "jems", force: true do |t|
+  create_table "jems", force: :cascade do |t|
     t.string   "name"
     t.string   "github"
     t.datetime "created_at"
@@ -45,14 +45,14 @@ ActiveRecord::Schema.define(version: 20140416230403) do
     t.string   "commit_message"
   end
 
-  create_table "scripts", force: true do |t|
+  create_table "scripts", force: :cascade do |t|
     t.string   "file"
     t.integer  "jem_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
