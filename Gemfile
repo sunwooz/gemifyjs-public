@@ -2,13 +2,13 @@ source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0.rc2'
+gem 'rails', '4.2.3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.2'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -42,7 +42,7 @@ group :production do
   gem "google-analytics-rails"
 end
 
-gem "bootstrap-sass", git: "https://github.com/wontaeyang/bootstrap-sass.git"
+gem "bootstrap-sass"
 gem "octokit"
 gem "jquery-fileupload-rails", git: "https://github.com/wontaeyang/jquery-fileupload-rails.git"
 gem 'carrierwave'
@@ -57,9 +57,8 @@ gem "font-awesome-rails"
 gem 'jquery-datatables-rails', git: 'https://github.com/wontaeyang/jquery-datatables-rails.git'
 gem 'jquery-easing-rails'
 gem 'fog'
-gem 'capistrano', '2.15.5'
 gem 'net-ssh', '2.7.0'
-gem 'rake', '10.3.1'
+gem 'rake'
 gem "typhoeus"
-gem 'gems', '~> 0.8.3'
+gem 'gems'
 
