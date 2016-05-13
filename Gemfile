@@ -44,7 +44,7 @@ end
 
 gem "bootstrap-sass"
 gem "octokit"
-gem "jquery-fileupload-rails", git: "https://github.com/wontaeyang/jquery-fileupload-rails.git"
+gem "jquery-fileupload-rails"
 gem 'carrierwave'
 gem 'devise'
 gem "omniauth"
@@ -54,7 +54,7 @@ gem 'sidekiq_status'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'jquery-ui-rails'
 gem "font-awesome-rails"
-gem 'jquery-datatables-rails', git: 'https://github.com/wontaeyang/jquery-datatables-rails.git'
+gem 'jquery-datatables-rails'
 gem 'jquery-easing-rails'
 gem 'fog'
 gem 'net-ssh', '2.7.0'
