@@ -1,5 +1,5 @@
 jQuery ->
-  $('.datatable').dataTable({
+  $('.datatable').DataTable({
     "sPaginationType": "bootstrap",
     "oLanguage": {
       "sLengthMenu": 'Display <select>'+
