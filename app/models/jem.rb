@@ -181,6 +181,7 @@ class Jem < ActiveRecord::Base
   def has_repo?
     client = github_login
     result = client.repository?("gemify-js/#{self.name}")
+
     if result == true
       errors.add(:name, "already exists on Github")
       return result
@@ -190,10 +191,13 @@ class Jem < ActiveRecord::Base
   end
 
   def has_rubygems?
-    gem_unavailable_message = "This rubygem could not be found."
-    response = Typhoeus.get("http://rubygems.org/api/v1/gems/#{self.name}.json").response_body
+    begin
+      has_gem = Gem::Specification::find_by_name(self.name)
+    rescue Gem::LoadError
+      has_gem = false
+    end
 
-    if response == gem_unavailable_message
+    if has_gem == false
       return false
     else
       errors.add(:name, "already exists on Rubygems")
