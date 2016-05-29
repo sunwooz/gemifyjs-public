@@ -89,32 +89,32 @@ enableGemButtons = () ->
   console.log('buttons enabled')
   $('.make-gem-button').prop('disabled', false)
 
-# $ ->
-#   alert('cheese')
+$ ->
+  alert('cheese')
 
-#   $('#new-script').fileupload
-#     dataType: "script"
-#     add: (e, data) ->
-#       types = /(\.|\/)(js|coffee|css|scss|jpe?g|png|gif)$/i
-#       file = data.files[0]
-#       if types.test(file.type) || types.test(file.name)
-#         $('#new-script').append(data.context)
-#         enableGemButtons()
-#         $('.no-gems-panel').fadeOut()
-#         data.submit()
-#       else
-#         alert("#{file.name} is not a javascript, CSS, or image file")
+  $('#new-script').fileupload
+    dataType: "script"
+    add: (e, data) ->
+      types = /(\.|\/)(js|coffee|css|scss|jpe?g|png|gif)$/i
+      file = data.files[0]
+      if types.test(file.type) || types.test(file.name)
+        $('#new-script').append(data.context)
+        enableGemButtons()
+        $('.no-gems-panel').fadeOut()
+        data.submit()
+      else
+        alert("#{file.name} is not a javascript, CSS, or image file")
 
-#   disableGemButtons()
+  disableGemButtons()
 
-#   $('#job-id-container').bind('DOMSubtreeModified', queryForPercentage )
+  $('#job-id-container').bind('DOMSubtreeModified', queryForPercentage )
 
-#   $('#update-gem-button').click( () ->
-#     percentage = 'width: 0%;'
-#     $('#job-progress').attr('style', percentage).text('0%')
-#     updateVersion()
-#     $('#versionModal').modal('hide')
-#   )
+  $('#update-gem-button').click( () ->
+    percentage = 'width: 0%;'
+    $('#job-progress').attr('style', percentage).text('0%')
+    updateVersion()
+    $('#versionModal').modal('hide')
+  )
 
 
 
