@@ -110,7 +110,6 @@ jQuery(document).ready () ->
 
   $(document).on "click", ".fileinput-button", ->
     $('#file-input').click()
-    console.log 'file input clicked'
 
   $('#update-gem-button').click( () ->
     percentage = 'width: 0%;'
