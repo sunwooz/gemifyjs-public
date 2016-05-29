@@ -89,7 +89,7 @@ enableGemButtons = () ->
   console.log('buttons enabled')
   $('.make-gem-button').prop('disabled', false)
 
-$(document).on 'ready page:load', ->
+jQuery(document).ready () ->
 
   $('#new-script').fileupload
     dataType: "script"
