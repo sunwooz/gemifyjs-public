@@ -117,6 +117,7 @@ $(document).ready () ->
 
   $('.fileinput-button').click () ->
     $('#file-input').click()
+    console.log 'file input clicked'
 
 
   
