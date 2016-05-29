@@ -24,7 +24,7 @@ module Ilovejs
 
         config.autoload_paths += %W(#{config.root}/workers)
         config.eager_load_paths += %W(#{config.root}/workers)
-        config.assets.precompile += %w(*.js *.coffee)
+        config.assets.precompile += %w(*.js *.coffee *.css *.scss *.js)
         # Settings in config/environments/* take precedence over those specified here.
         # Application configuration should go into files in config/initializers
         # -- all .rb files in that directory are automatically loaded.
