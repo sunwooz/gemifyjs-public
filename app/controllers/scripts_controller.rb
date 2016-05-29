@@ -6,7 +6,7 @@ class ScriptsController < ApplicationController
     @activity = track_activity(@jem, @script, current_user)
 
     respond_to do |format|
-      format.js
+      format.js { render layout: false }
     end
   end
 
@@ -16,7 +16,7 @@ class ScriptsController < ApplicationController
     @activity = track_activity(@jem, @script, current_user)
     @script.destroy
     respond_to do |format|
-      format.js
+      format.js { render layout: false }
     end
   end
 

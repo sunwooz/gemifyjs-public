@@ -1,0 +1,2 @@
+
+Rails.application.config.assets.precompile += %w( front/front.css front/default.css front/flexslider front/owl-carousel/owl.carousel front/owl-carousel/owl.theme front/owl-carousel/owl.transitions front/application front/html5shiv.js front/jquery.flexslider front/jquery.magnific-popup.min front/modernizr-2.6.2.min front/owl-carousel/owl.carousel.js front/respond.min front/scripts.js front/scroll.js )

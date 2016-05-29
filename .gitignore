@@ -20,6 +20,6 @@
 
 uploads/
 
-jems_tmp/*
 coverage/
 vendor/
+access_keys.txt

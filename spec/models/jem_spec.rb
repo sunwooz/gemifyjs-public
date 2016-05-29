@@ -15,6 +15,14 @@ describe Jem do
   before {
     jem.delete_github_repository
   }
+
+  describe "#delete_github_repository" do
+    it "should delete the github repository" do
+      repository = jem.create_github_repository
+      jem.delete_github_repository
+      expect(jem.has_repo?).to be false
+    end
+  end
   
   describe "#create_gem_directory" do
     it "uses the correct gem id" do
@@ -33,14 +41,14 @@ describe Jem do
       repository = jem.create_github_repository
       jem.set_ssh_url(repository)
       jem.delete_github_repository
-      expect(jem.gem_repo).to eq( "http://www.github.com/gemify-js/Test-gem")
+      expect(jem.gem_repo).to eq( "http://www.github.com/gemify-me/Test-gem")
     end
 
     it "sets the correct ssh url" do
       repository = jem.create_github_repository
       jem.set_ssh_url(repository)
       jem.delete_github_repository
-      expect(jem.ssh_url.downcase).to eq("git@github.com:gemify-js/Test-gem.git".downcase)
+      expect(jem.ssh_url.downcase).to eq("git@github.com:gemify-me/Test-gem.git".downcase)
     end
   end
 
@@ -49,7 +57,9 @@ describe Jem do
       client = jem.github_login
       repository = jem.create_github_repository
       jem.add_collaborator(repository, "sunwooz")
-      expect(client.collaborators(repository)).to eq("sunwooz")
+      collaborators = client.collaborators(repository.full_name)
+      names = collaborators.map { |collab| collab[:login] }
+      expect(names).to include("sunwooz")
       jem.delete_github_repository
     end
   end
@@ -66,7 +76,7 @@ describe Jem do
       repository = jem.create_github_repository
       full_name = repository.full_name
       jem.delete_github_repository
-      expect(full_name).to eq("gemify-js/#{jem.name}")
+      expect(full_name).to eq("gemify-me/#{jem.name}")
     end
   end
 

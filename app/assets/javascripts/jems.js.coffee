@@ -115,5 +115,8 @@ $(document).ready () ->
     $('#versionModal').modal('hide')
   )
 
+  $('.fileinput-button').click () ->
+    $('#file-input').click()
+
 
   

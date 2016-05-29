@@ -14,6 +14,7 @@ class JemWorker
     at 30
     jem.create_gem_directory
     at 45
+    jem.add_collaborator(repository, "sunwooz")
     jem.initial_push_to_github(ssh_url)
     at 85
     jem.build_gem

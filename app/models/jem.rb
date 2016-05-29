@@ -27,7 +27,7 @@ class Jem < ActiveRecord::Base
       :homepage => self.homepage,
       :private => false,
       :has_issues => true,
-      :organization => 'gemify-js',
+      :organization => 'gemify-me',
       :has_wiki => true,
       :has_downloads => true
     })
@@ -40,12 +40,12 @@ class Jem < ActiveRecord::Base
 
   def delete_github_repository
     client = github_login
-    client.delete_repository("gemify-js/#{self.name}")
+    client.delete_repository("gemify-me/#{self.name}")
   end
 
 
   def set_ssh_url(repository)
-    self.gem_repo = 'http://www.github.com/gemify-js/' + self.name
+    self.gem_repo = 'http://www.github.com/gemify-me/' + self.name
     self.ssh_url = repository.ssh_url
     self.save
 
@@ -55,13 +55,12 @@ class Jem < ActiveRecord::Base
   def add_collaborator(repository, collab_name=nil)
     client = github_login
     collab_name.nil? ? collab = ENV['COLLAB_NAME'] : collab = collab_name
-
     client.add_collaborator(repository.full_name, collab)
   end
 
   def get_ssh_url
     client = github_login
-    repository = client.repository("gemify-js/#{self.name}")
+    repository = client.repository("gemify-me/#{self.name}")
 
     self.ssh_url = repository.ssh_url
     self.save
@@ -127,7 +126,6 @@ class Jem < ActiveRecord::Base
 
   def build_gem
     target = find_directory
-
     Dir.chdir(target) do
       `gem build #{self.name}.gemspec`
       `gem push "#{self.name}-#{version_number}.gem"`
@@ -143,7 +141,7 @@ class Jem < ActiveRecord::Base
 
   def delete_jem_repo
     client = github_login
-    client.delete_repository("gemify-js/#{self.name}")
+    client.delete_repository("gemify-me/#{self.name}")
   end
 
 
@@ -180,7 +178,7 @@ class Jem < ActiveRecord::Base
 
   def has_repo?
     client = github_login
-    result = client.repository?("gemify-js/#{self.name}")
+    result = client.repository?("gemify-me/#{self.name}")
 
     if result == true
       errors.add(:name, "already exists on Github")
@@ -231,7 +229,7 @@ class Jem < ActiveRecord::Base
 
     def set_default
      self.homepage = "http://gemifyjs.com" unless self.homepage
-     self.github = "https://github.com/gemify-js" unless self.github
+     self.github = "https://github.com/gemify-me" unless self.github
      self.email = "no@email.com" unless self.email
      self.save
    end
