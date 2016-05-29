@@ -19,3 +19,4 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require jquery.easing
 //= require bootstrap
+//= require_tree .
