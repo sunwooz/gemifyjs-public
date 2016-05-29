@@ -108,9 +108,6 @@ jQuery(document).ready () ->
 
   $('#job-id-container').bind('DOMSubtreeModified', queryForPercentage )
 
-  $(document).on "click", ".fileinput-button", ->
-    $('#file-input').click()
-
   $('#update-gem-button').click( () ->
     percentage = 'width: 0%;'
     $('#job-progress').attr('style', percentage).text('0%')
