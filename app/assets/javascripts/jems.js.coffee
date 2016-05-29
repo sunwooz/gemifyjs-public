@@ -108,6 +108,13 @@ jQuery(document).ready () ->
 
   $('#job-id-container').bind('DOMSubtreeModified', queryForPercentage )
 
+  $('.fileinput-button').click () ->
+    $('#file-input').click()
+    console.log 'file input clicked'
+  
+  $('body').click () ->
+    console.log 'click'
+  
   $('#update-gem-button').click( () ->
     percentage = 'width: 0%;'
     $('#job-progress').attr('style', percentage).text('0%')
@@ -115,11 +122,6 @@ jQuery(document).ready () ->
     $('#versionModal').modal('hide')
   )
 
-  $('.fileinput-button').click () ->
-    $('#file-input').click()
-    console.log 'file input clicked'
-  
-  $('body').click () ->
-    console.log 'click'
+
 
   
