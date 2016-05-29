@@ -24,6 +24,7 @@ module Ilovejs
 
         config.autoload_paths += %W(#{config.root}/workers)
         config.eager_load_paths += %W(#{config.root}/workers)
+        config.assets.precompile += [/^[-_a-zA-Z0-9]*\..*/]
         # Settings in config/environments/* take precedence over those specified here.
         # Application configuration should go into files in config/initializers
         # -- all .rb files in that directory are automatically loaded.
