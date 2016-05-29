@@ -115,9 +115,11 @@ jQuery(document).ready () ->
     $('#versionModal').modal('hide')
   )
 
-  $('.fileinput-button').click( () ->
+  $('.fileinput-button').click () ->
     $('#file-input').click()
     console.log 'file input clicked'
-  )
+  
+  $('body').click () ->
+    console.log 'click'
 
   
