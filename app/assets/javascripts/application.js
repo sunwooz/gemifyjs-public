@@ -19,4 +19,9 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require jquery.easing
 //= require bootstrap
-//= require_tree .
+//= require index
+//= require jems
+//= require jems_table
+//= require menu
+//= require new
+//= require script
