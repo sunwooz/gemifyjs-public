@@ -18,6 +18,8 @@ class Jem < ActiveRecord::Base
   def create_gem_directory
     `RAILS_ENV="#{Rails.env.to_s}" rails g gemify #{self.id}`
     puts "created gem folder"
+    file = `ls ~/jems_tmp`
+    puts file + " these are the files in jems temp folder"
     self.id
   end
 
