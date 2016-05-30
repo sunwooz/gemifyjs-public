@@ -467,6 +467,7 @@ DEPENDENCIES
   sidekiq_status
   simplecov
   sinatra (>= 1.3.0)
+  sprockets-rails
   sqlite3
   typhoeus
   uglifier
