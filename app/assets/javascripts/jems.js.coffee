@@ -90,7 +90,6 @@ enableGemButtons = () ->
   $('.make-gem-button').prop('disabled', false)
 
 $ ->
-  alert('cheese')
 
   $('#new-script').fileupload
     dataType: "script"
@@ -115,6 +114,9 @@ $ ->
     updateVersion()
     $('#versionModal').modal('hide')
   )
+
+  $('.fileinput-button').click () ->
+    $('#file-input').click()
 
 
 
