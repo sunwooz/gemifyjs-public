@@ -14,12 +14,12 @@ class JemWorker
     at 30
     jem.create_gem_directory
     at 45
-    jem.add_collaborator(repository, "sunwooz")
-    jem.initial_push_to_github(ssh_url)
+    # jem.add_collaborator(repository, "sunwooz")
+    # jem.initial_push_to_github(ssh_url)
     at 85
-    jem.build_gem
+    # jem.build_gem
     at 95
-    jem.delete_jem_from_directory
+    # jem.delete_jem_from_directory
     at 100
   end
 
