@@ -73,6 +73,8 @@ class Jem < ActiveRecord::Base
       puts `ls` + "this is inside the folder that the program is initializing"
       `git init`
       `git add .`
+      `git config --global user.email "gemifyjs@gmail.com"`
+      `git config --global user.name "sunwoo yang"`
       `git commit -am "Initial Commit"`
       `git remote add #{self.name} #{ssh_url}`
       `git push #{self.name} master`
