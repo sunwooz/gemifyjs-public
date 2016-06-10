@@ -70,15 +70,21 @@ class Jem < ActiveRecord::Base
   def initial_push_to_github(ssh_url)
     target = find_directory
     Dir.chdir(target) do
-      puts `ls` + "this is inside the folder that the program is initializing"
       `git init`
       `git add .`
+      `git config --global credential.helper cache`
+      `git config --global credential.helper "cache --timeout=9999"`
+      `git config remote.origin.url https://gemify-js:#{ENV['GITHUB_PASSWORD']}@github.com/gemify-js/#{self.name}.git`
+      puts `git remote -v`
       `git config --global user.email "gemifyjs@gmail.com"`
       `git config --global user.name "sunwoo yang"`
+
       `git commit -am "Initial Commit"`
-      `git remote add #{self.name} #{ssh_url}`
-      `git push #{self.name} master`
-      `git remote rm #{self.name}`
+      #`git remote add #{self.name} #{ssh_url}`
+      #`git push #{self.name} master`
+      `git push origin master`
+      #`git remote rm #{self.name}`
+      `git remote rm origin`
     end
   end
 
