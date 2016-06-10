@@ -74,7 +74,7 @@ class Jem < ActiveRecord::Base
       `git add .`
       `git config --global credential.helper cache`
       `git config --global credential.helper "cache --timeout=9999"`
-      `git config remote.origin.url https://gemify-js:#{ENV['GITHUB_PASSWORD']}@github.com/gemify-js/#{self.name}.git`
+      `git config remote.origin.url https://gemify-js:#{ENV['HTTPS_GITHUB_PASSWORD']}@github.com/gemify-js/#{self.name}.git`
       puts `git remote -v`
       `git config --global user.email "gemifyjs@gmail.com"`
       `git config --global user.name "sunwoo yang"`
