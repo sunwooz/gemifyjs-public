@@ -1,4 +1,4 @@
-class JemWorker
+sclass JemWorker
   include Sidekiq::Worker
   include SidekiqStatus::Worker
   sidekiq_options retry: false
@@ -17,9 +17,9 @@ class JemWorker
     jem.add_collaborator(repository, "sunwooz")
     jem.initial_push_to_github(ssh_url)
     at 85
-    # jem.build_gem
+    jem.build_gem
     at 95
-    # jem.delete_jem_from_directory
+    jem.delete_jem_from_directory
     at 100
   end
 
