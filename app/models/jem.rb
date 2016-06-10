@@ -137,6 +137,7 @@ class Jem < ActiveRecord::Base
     target = find_directory
     Dir.chdir(target) do
       `gem build #{self.name}.gemspec`
+      puts ENV["RUBYGEM_API_KEY"]
       `gem push -k #{ENV["RUBYGEM_API_KEY"]} #{self.name}-#{version_number}.gem`
     end
   end
