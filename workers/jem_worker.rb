@@ -1,4 +1,4 @@
-sclass JemWorker
+class JemWorker
   include Sidekiq::Worker
   include SidekiqStatus::Worker
   sidekiq_options retry: false
